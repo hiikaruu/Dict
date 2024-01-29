@@ -122,9 +122,9 @@ public class DictionaryConsoleUI {
         String translation = scanner.next();
         word = new Word(value, translation);
         try {
-            InputValidator.validateWordLength(value, word.determineWordType());
-            InputValidator.validateWordLength(translation, word.determineWordType());
-            InputValidator.validateEntry(value, translation,word.determineWordType(), dictionary);
+            InputValidator.validateTranslationLength(translation, word.getTranslationWordType());
+            InputValidator.validateValueLength(value, word.getValueWordType());
+            InputValidator.validateEntry(value, translation,word.getValueWordType(),word.getTranslationWordType(), dictionary);
             dictionary.addEntry(value, translation);
 
         } catch (ValidationException e) {

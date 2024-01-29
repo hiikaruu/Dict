@@ -39,7 +39,7 @@ public class Dictionary {
 
     public void addEntry(String value, String translation) {
         Word word = new Word(value, translation);
-        word.determineWordType();
+        word.getWordType();
         entries.put(value, word);
         System.out.println("Запись добавлена: " + value + " - " + translation);
         fileHandler. writeToFile(this);
@@ -48,10 +48,9 @@ public class Dictionary {
     public void displayEntries() {
         System.out.println("Содержимое словаря:");
         for (Word word : entries.values()) {
-            System.out.println(word.getValue() + " - " + word.getTranslation() + " - " + word.getWordType());
+            System.out.println(word.getValue() + " - " + word.getTranslation());
         }
     }
-
 }
 
 
