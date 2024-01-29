@@ -23,17 +23,17 @@ public class InputValidator {
         }
     }
 
-    public static void validateEntry(String value, String translation, WordType valueWordType, WordType translationWordType, Dictionary dictionary) throws ValidationException {
+    public static void validateEntry(String value, String translation, WordType valueWordType, WordType translationWordType, DictionaryType dictionaryType, Dictionary dictionary) throws ValidationException {
         validateTranslationLength(translation, translationWordType);
         validateValueLength(value, valueWordType);
 
-        if ((valueWordType == WordType.LETTER)&&(translationWordType == WordType.NUMBER)) {
-            if (!value.matches("[0-9]+")&&(!value.matches("[a-zA-Z]+"))) {
-                throw new ValidationException("Некорректные символы для словаря букв.");
-            }
-        } else if ((valueWordType == WordType.NUMBER)&&(translationWordType == WordType.LETTER)) {
-            if (!value.matches("[a-zA-Z]+") || !translation.matches("[0-9]+")) {
+        if (dictionaryType == DictionaryType.LETTERS) {
+            if (!value.matches("[0-9]+")&&!translation.matches("[a-zA-Z]+")) {
                 throw new ValidationException("Некорректные символы для словаря цифр.");
+            }
+        } else if (dictionaryType == DictionaryType.NUMBERS) {
+            if (!value.matches("[a-zA-Z]+")&& !translation.matches("[0-9]+")) {
+                throw new ValidationException("Некорректные символы для словаря букв.");
             }
         }
 

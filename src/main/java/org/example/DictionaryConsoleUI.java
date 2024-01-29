@@ -120,18 +120,8 @@ public class DictionaryConsoleUI {
 
         System.out.println("Введите перевод: ");
         String translation = scanner.next();
-        word = new Word(value, translation);
-        try {
-            InputValidator.validateTranslationLength(translation, word.getTranslationWordType());
-            InputValidator.validateValueLength(value, word.getValueWordType());
-            InputValidator.validateEntry(value, translation,word.getValueWordType(),word.getTranslationWordType(), dictionary);
-            dictionary.addEntry(value, translation);
-
-        } catch (ValidationException e) {
-            System.out.println(e.getMessage());
-        }
+        dictionary.addEntry(value, translation);
     }
-
 
     private void removeEntry() {
         System.out.print("Введите значение для удаления: ");

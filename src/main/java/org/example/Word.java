@@ -27,12 +27,12 @@ public class Word {
         return translationWordType;
     }
     public void getWordType() {
-        if (value.matches("[0-9]+")&&translation.matches(("[a-zA-Z]+"))) {
-             valueWordType=WordType.NUMBER;
-             translationWordType=WordType.LETTER;
-        } else if (value.matches("[a-zA-Z]+")&&value.matches("[0-9]+")) {
-            valueWordType=WordType.LETTER;
-            translationWordType=WordType.NUMBER;
+        if (value.matches("[0-9]+") && translation.matches(("[a-zA-Z]+"))) {
+            valueWordType = WordType.NUMBER;
+            translationWordType = WordType.LETTER;
+        } else if (value.matches("[a-zA-Z]+") && translation.matches("[0-9]+")) {
+            valueWordType = WordType.LETTER;
+            translationWordType = WordType.NUMBER;
         }
     }
 }

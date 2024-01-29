@@ -1,9 +1,13 @@
 package org.example;
 
+import org.example.validator.InputValidator;
+import org.example.validator.ValidationException;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Dictionary {
+
     public Dictionary(DictionaryType dictionaryType, FileHandler fileHandler) {
         this.dictionaryType = dictionaryType;
         this.entries = new HashMap<>();
@@ -40,6 +44,16 @@ public class Dictionary {
     public void addEntry(String value, String translation) {
         Word word = new Word(value, translation);
         word.getWordType();
+        try {
+            getType();
+            word.getWordType();
+            InputValidator.validateTranslationLength(translation, word.getTranslationWordType());
+            InputValidator.validateValueLength(value, word.getValueWordType());
+            InputValidator.validateEntry(value, translation,word.getValueWordType(),word.getTranslationWordType(),getType(),this);
+
+        } catch (ValidationException e) {
+            System.out.println(e.getMessage());
+        }
         entries.put(value, word);
         System.out.println("Запись добавлена: " + value + " - " + translation);
         fileHandler. writeToFile(this);
