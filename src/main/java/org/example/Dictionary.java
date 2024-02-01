@@ -32,9 +32,9 @@ public class Dictionary {
         return entries;
     }
     public void removeEntry(String key) {
-        entries.remove(key);
+        searchEntry(key);
+        fileHandler.removeEntryFromFile(this, key);
         System.out.println("Запись удалена: " + key);
-        fileHandler.writeToFile(this);
     }
 
     public Word searchEntry(String key) {
@@ -50,13 +50,13 @@ public class Dictionary {
             InputValidator.validateTranslationLength(translation, word.getTranslationWordType());
             InputValidator.validateValueLength(value, word.getValueWordType());
             InputValidator.validateEntry(value, translation,word.getValueWordType(),word.getTranslationWordType(),getType(),this);
-
+            entries.put(value, word);
+            System.out.println("Запись добавлена: " + value + " - " + translation);
+            fileHandler. writeToFile(this);
         } catch (ValidationException e) {
             System.out.println(e.getMessage());
         }
-        entries.put(value, word);
-        System.out.println("Запись добавлена: " + value + " - " + translation);
-        fileHandler. writeToFile(this);
+
     }
 
     public void displayEntries() {

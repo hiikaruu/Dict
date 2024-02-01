@@ -1,7 +1,5 @@
 package org.example;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class FileDictionaryHandler implements FileHandler {
@@ -42,9 +40,13 @@ public class FileDictionaryHandler implements FileHandler {
 
     @Override
     public void removeEntryFromFile(Dictionary dictionary, String key) {
-
         Map<String, Word> entries = dictionary.getEntries();
-        entries.remove(key);
-        writeToFile(dictionary);
+
+        if (entries.containsKey(key)) {
+            entries.remove(key);
+            writeToFile(dictionary);
+        } else {
+            System.out.println("Запись с ключом " + key + " не найдена.");
+        }
     }
 }

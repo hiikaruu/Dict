@@ -11,7 +11,6 @@ public class DictionaryConsoleUI {
     private Dictionary dictionary;
     private Scanner scanner;
 
-    private Word word;
 
     public DictionaryConsoleUI() {
         this.scanner = new Scanner(System.in);
